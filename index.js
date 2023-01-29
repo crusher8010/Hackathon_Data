@@ -15,13 +15,13 @@ dotenv.config({ path: './config.env' });
 
 const app = express();
 app.use(express.json());
-const http = require('http').Server(app);
+const https = require('https').Server(app);
 
 app.use(cors({
   origin: "*"
 }));
 
-const socketIO = require('socket.io')(http, {
+const socketIO = require('socket.io')(https, {
   cors: {
     origin: "*"
   }
@@ -60,6 +60,6 @@ const DB = process.env.URL.replace('<PASSWORD>', process.env.PASSWORD);
 mongoose.connect(DB).then(() => console.log('Database Connection formed..')).catch(err => console.log('No Database Connection...'))
 
 const port = process.env.PORT;
-http.listen(port, () => {
+https.listen(port, () => {
   console.log(`Database is running on ${port}`);
 })
