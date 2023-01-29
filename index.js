@@ -23,7 +23,8 @@ app.use(cors({
 
 const socketIO = require('socket.io')(http, {
   cors: {
-    origin: "*"
+    origin: "http://localhost:3000",
+    Credential: true
   }
 })
 
